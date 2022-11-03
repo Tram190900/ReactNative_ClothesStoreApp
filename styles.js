@@ -1,0 +1,91 @@
+import { StyleSheet, Dimensions } from "react-native";
+
+const {height, width} = Dimensions.get('window');
+const styles = StyleSheet.create({
+    startContainer:{
+        flex:1,
+        margin:15,
+        paddingTop:20,
+    },
+    buttonGo:{
+        marginTop:27,
+        marginLeft:20,
+        marginRight:20,
+        borderWidth:1.5,
+        borderColor:'black',
+        borderRadius:25,
+    },
+    imageStart:{
+        width:'100%',
+        height:'100%',
+        borderRadius:30,
+    },
+    txtGo:{
+        fontSize:23,
+        textAlign:'center',
+        padding:10,
+    },
+    logoText:{
+        fontWeight:'bold',
+        fontSize:42,
+        textAlign:'justify'
+    },
+    categoryContainer:{
+        flex:1,
+        padding:20,
+        backgroundColor:'white'
+    },
+    headercategory:{
+        marginTop:20,
+        flexDirection:'row',
+        justifyContent:'space-between',
+    },
+    textHeader:{
+        fontSize:20,
+        fontWeight:'bold',
+        paddingTop:5
+    },
+    imageHeader:{
+        width:50,
+        height:50,
+        borderRadius:30,
+    },
+    searchContainer:{
+        marginTop:20,
+        paddingLeft:5,
+        flexDirection:'row',
+        alignItems:'center',
+        borderWidth:1,
+        borderColor:'gray',
+        borderRadius:22
+    },
+    searchText:{
+        width:'90%',
+        height:45,
+        borderWidth:0,
+        fontSize:16,
+        paddingLeft:15,
+        paddingRight:13
+    },
+    listCategory:{
+        centerContent:true,
+        marginTop:20,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginBottom:20
+
+    },
+    buttonCategory:{
+        //backgroundColor: '#E4E2E2',
+        width:100,
+        height:40,
+        borderRadius:20,
+        justifyContent:'center',
+        marginRight:20
+    },
+    btnCategoryText:{
+        textAlign:'center',
+        fontSize:18
+    }
+})
+export default styles
