@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View ,Image} from 'react-native';
 import Category from './Screen/category';
+import ProductDetail from './Screen/ProductDetail';
 import Start from './Screen/Start';
 
 const stack = createNativeStackNavigator();
@@ -24,6 +25,8 @@ export default function App() {
         <stack.Screen name='Start' component={Start}
                       options={{headerShown:false}}></stack.Screen>
         <stack.Screen name='Category' component={Category}
+                      options={{headerShown:false}}></stack.Screen>
+        <stack.Screen name='ProductDetail' component={ProductDetail}
                       options={{headerShown:false}}></stack.Screen>
       </stack.Navigator>
     </NavigationContainer>

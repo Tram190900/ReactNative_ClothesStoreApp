@@ -36,28 +36,34 @@ const styles = StyleSheet.create({
         backgroundColor:'white'
     },
     headercategory:{
+        height:'8%',
         marginTop:20,
         flexDirection:'row',
         justifyContent:'space-between',
+        alignItems:'center',
     },
     textHeader:{
-        fontSize:20,
-        fontWeight:'bold',
-        paddingTop:5
+        fontSize:15,
+        color:'gray'
     },
     imageHeader:{
         width:50,
         height:50,
         borderRadius:30,
     },
+    bannerContainer:{
+        height:'20%',
+        marginTop:15,
+    },
     searchContainer:{
-        marginTop:20,
+        marginTop:15,
         paddingLeft:5,
         flexDirection:'row',
         alignItems:'center',
         borderWidth:1,
         borderColor:'gray',
-        borderRadius:22
+        borderRadius:22,
+        height:'6.4%'
     },
     searchText:{
         width:'90%',
@@ -69,14 +75,13 @@ const styles = StyleSheet.create({
     },
     listCategory:{
         centerContent:true,
-        marginTop:20,
+        marginTop:10,
         flexDirection:'row',
         justifyContent:'space-between',
-        marginBottom:20
 
     },
     buttonCategory:{
-        //backgroundColor: '#E4E2E2',
+        backgroundColor: '#E4E2E2',
         width:100,
         height:40,
         borderRadius:20,
@@ -86,6 +91,42 @@ const styles = StyleSheet.create({
     btnCategoryText:{
         textAlign:'center',
         fontSize:18
-    }
+    },
+    listContainer:{
+        width:'49%',
+        height:320,
+        marginRight:10
+    },
+    itemContainer:{
+        width:'100%',
+        elevation:30,
+        shadowColor:'black',
+        backgroundColor:'white',
+        borderRadius:20
+    },
+    imageItem:{
+        width:'100%',
+        height:'70%',
+        borderRadius:20,
+       
+    },
+    itemText:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-around'
+    },
+    textName:{
+        backgroundColor:'white',
+        fontWeight:'bold',
+        margin:5,
+    },
+    textPrice:{
+        backgroundColor:'white',
+        fontWeight:'bold',
+        marginLeft:5,
+        //DC9100
+    },
+    
+    
 })
 export default styles
