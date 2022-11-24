@@ -75,7 +75,7 @@ export default function Start({navigation}){
             </View>
             <Animated.View style={{transform:[{translateY:moveButton}]}}>
                 <TouchableOpacity style={styles.buttonGo} 
-                                    onPress={()=>navigation.navigate('Category')}>
+                                    onPress={()=>navigation.navigate('Login')}>
                     <Text style={styles.txtGo}>Go Shopping</Text>
                 </TouchableOpacity>
             </Animated.View>

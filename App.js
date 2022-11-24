@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View ,Image} from 'react-native';
 import Category from './Screen/category';
+import LoginScreen from './Screen/Login';
 import ProductDetail from './Screen/ProductDetail';
 import Start from './Screen/Start';
 
@@ -19,15 +20,13 @@ function CustomHeader(){
 
 export default function App() {
   return (
-    <NavigationContainer screenOptions={{headerShown: false}}>
+    <NavigationContainer>
       
-      <stack.Navigator>
-        <stack.Screen name='Start' component={Start}
-                      options={{headerShown:false}}></stack.Screen>
-        <stack.Screen name='Category' component={Category}
-                      options={{headerShown:false}}></stack.Screen>
-        <stack.Screen name='ProductDetail' component={ProductDetail}
-                      options={{headerShown:false}}></stack.Screen>
+      <stack.Navigator screenOptions={{headerShown: false}}>
+        <stack.Screen name='Start' component={Start}></stack.Screen>
+        <stack.Screen name='Category' component={Category}></stack.Screen>
+        <stack.Screen name='ProductDetail' component={ProductDetail}></stack.Screen>
+        <stack.Screen name='Login' component={LoginScreen}></stack.Screen>
       </stack.Navigator>
     </NavigationContainer>
   );

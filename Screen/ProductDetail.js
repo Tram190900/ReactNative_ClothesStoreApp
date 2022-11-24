@@ -11,10 +11,7 @@ export default function ProductDetail({navigation}){
     const {height, width} = Dimensions.get('window')
     
     useEffect(()=>{
-        const {id, category} = route.params;
-        fetch('https://63512fa53e9fa1244e57aeb0.mockapi.io/store/Category/'+category+'/Products/'+id)
-        .then(res=>res.json())
-        .then(resJson=>setData(resJson))
+        setData(route.params)
     },[])
     return(
         <View style={styles.detailContainer}>
@@ -55,6 +52,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         margin:5,
         fontSize:25,
+        width:'80%'
     },
     textPrice:{
         fontWeight:'bold',
