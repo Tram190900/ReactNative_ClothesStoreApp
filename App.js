@@ -2,7 +2,6 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View ,Image} from 'react-native';
-import HeaderComponent from './Componnets/Header';
 import Category from './Screen/category';
 import LoginScreen from './Screen/Login';
 import ProductDetail from './Screen/ProductDetail';

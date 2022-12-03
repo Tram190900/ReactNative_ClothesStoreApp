@@ -20,7 +20,6 @@ import SimpleSelectButton from "react-native-simple-select-button";
 import { ref, onValue } from "firebase/database";
 import { database } from "../firebaseConfig";
 import { auth } from "../firebaseConfig";
-import HeaderComponent from "../Componnets/Header";
 import { useRoute } from "@react-navigation/native";
 
 export default function Category({ navigation }) {
