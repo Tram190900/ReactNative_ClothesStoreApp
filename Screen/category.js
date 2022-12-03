@@ -29,6 +29,7 @@ export default function Category({ navigation }) {
   const [btnColor, setBtnColor] = useState("#E4E2E2");
   const [choise, setChoise] = useState("All");
   const [userId,setUserId] = useState("");
+  const [userData, setUserData] = useState({});
 
   var listProducts = new Array();
   // const [inforProduct, setInforProduct] = useState({
@@ -59,11 +60,20 @@ export default function Category({ navigation }) {
     });
     
   }
+  const getUserData=async(id)=>{
+    const starCountRef = ref(database, "users/" + id);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      setUserData(data);
+      console.log(userData);
+    });
+}
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    getAllProduct()
     setUserId(route.params)
+    getUserData(userId)
+    getAllProduct()
   }, []);
 
   const FlatListProduct = () => {
@@ -116,7 +126,22 @@ export default function Category({ navigation }) {
 
   return (
     <View style={styles.categoryContainer}>
-        <HeaderComponent userId={userId}></HeaderComponent>
+        <View style={styles.headercategory}>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <Image source={back}></Image>
+      </TouchableOpacity>
+      <View style={{ alignItems: "center" }}>
+        <Image source={logo} style={{ width: 95, height: 56 }}></Image>
+      </View>
+      <TouchableOpacity>
+        <Image
+          style={styles.imageHeader}
+          source={{
+            uri: userData.uriImage,
+          }}
+        ></Image>
+      </TouchableOpacity>
+    </View>
 
       <View style={styles.searchContainer}>
         <TextInput placeholder="Search" style={styles.searchText}></TextInput>
