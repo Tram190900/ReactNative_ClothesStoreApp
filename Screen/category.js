@@ -18,19 +18,23 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { AntDesign } from "@expo/vector-icons";
 import SimpleSelectButton from "react-native-simple-select-button";
 import { ref, onValue } from "firebase/database";
-import {database} from '../firebaseConfig'
+import { database } from "../firebaseConfig";
+import { auth } from "../firebaseConfig";
+import HeaderComponent from "../Componnets/Header";
+import { useRoute } from "@react-navigation/native";
 
 export default function Category({ navigation }) {
+  const route = useRoute();
   const { height, width } = Dimensions.get("window");
   const [btnColor, setBtnColor] = useState("#E4E2E2");
-  const [choise, setChoise] = useState('All');
+  const [choise, setChoise] = useState("All");
+  const [userId,setUserId] = useState("");
+
   var listProducts = new Array();
   // const [inforProduct, setInforProduct] = useState({
   //     id: null,
   //     category: null
   // })
-
- 
 
   const checkButton = (category) => {
     setChoise(category);
@@ -43,85 +47,76 @@ export default function Category({ navigation }) {
       describe: item.describe,
       imageModel: item.imageModel,
       imageProduct: item.imageProduct,
-      price:item.price
+      price: item.price,
     });
   };
 
-  const [data, setData] = useState([]);
-  useEffect(() => {
+  const getAllProduct = async()=>{
     const starCountRef = ref(database, "products");
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       setData(data);
     });
+    
+  }
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getAllProduct()
+    setUserId(route.params)
   }, []);
 
-  const FlatListProduct=()=>{
-    if(choise==='All'){
-        data.forEach(item=>listProducts.push(item))
-    }else{
-        data.forEach(item=>{
-            if(item.CategoryId===choise){
-                listProducts.push(item)
-            }
-        })
+  const FlatListProduct = () => {
+    if (choise === "All") {
+      data.forEach((item) => listProducts.push(item));
+    } else {
+      data.forEach((item) => {
+        if (item.CategoryId === choise) {
+          listProducts.push(item);
+        }
+      });
     }
-    return(
-        <FlatList
-          data={listProducts}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item, index }) => {
-            return (
-              <View style={styles.listContainer}>
-                <TouchableOpacity
-                  style={styles.itemContainer}
-                  onPress={() => handlerClick(item)}
-                >
-                  <Image
-                    style={styles.imageItem}
-                    source={{ uri: item.imageModel }}
-                  ></Image>
+    return (
+      <FlatList
+        data={listProducts}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item, index }) => {
+          return (
+            <View style={styles.listContainer}>
+              <TouchableOpacity
+                style={styles.itemContainer}
+                onPress={() => handlerClick(item)}
+              >
+                <Image
+                  style={styles.imageItem}
+                  source={{ uri: item.imageModel }}
+                ></Image>
 
-                  <View style={styles.itemText}>
-                    <View style={{ width: "80%" }}>
-                      <Text style={styles.textName}>{item.name}</Text>
-                      <Text style={styles.textPrice}>{item.price}$</Text>
-                    </View>
-                    <TouchableOpacity>
-                      <AntDesign
-                        name="shoppingcart"
-                        size={25}
-                        color="#DC9100"
-                      ></AntDesign>
-                    </TouchableOpacity>
+                <View style={styles.itemText}>
+                  <View style={{ width: "80%" }}>
+                    <Text style={styles.textName}>{item.name}</Text>
+                    <Text style={styles.textPrice}>{item.price}$</Text>
                   </View>
-                </TouchableOpacity>
-              </View>
-            );
-          }}
-          numColumns={2}
-        ></FlatList>
-    )
-  }
+                  <TouchableOpacity>
+                    <AntDesign
+                      name="shoppingcart"
+                      size={25}
+                      color="#DC9100"
+                    ></AntDesign>
+                  </TouchableOpacity>
+                </View>
+              </TouchableOpacity>
+            </View>
+          );
+        }}
+        numColumns={2}
+      ></FlatList>
+    );
+  };
 
   return (
     <View style={styles.categoryContainer}>
-      <View style={styles.headercategory}>
-        <TouchableOpacity onPress={() => navigation.navigate("Start")}>
-          <Image source={back}></Image>
-        </TouchableOpacity>
-        <View style={{ alignItems: "center" }}>
-          <Image source={logo} style={{ width: 95, height: 56 }}></Image>
-        </View>
-        <TouchableOpacity>
-          <Image
-            style={styles.imageHeader}
-            source={{
-              uri: "https://img.freepik.com/free-photo/woman-black-trousers-purple-blouse-laughs-leaning-stand-with-elegant-clothes-pink-background_197531-17614.jpg?w=2000",
-            }}
-          ></Image>
-        </TouchableOpacity>
-      </View>
+        <HeaderComponent userId={userId}></HeaderComponent>
 
       <View style={styles.searchContainer}>
         <TextInput placeholder="Search" style={styles.searchText}></TextInput>
@@ -146,7 +141,7 @@ export default function Category({ navigation }) {
           contentContainerStyle={styles.listCategory}
           horizontal={true}
         >
-        <View style={{ width: 70, marginRight: 60 }}>
+          <View style={{ width: 70, marginRight: 60 }}>
             <SimpleSelectButton
               text="All"
               buttonDefaultColor={"#E4E2E2"}

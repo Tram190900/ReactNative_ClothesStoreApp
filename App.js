@@ -5,6 +5,7 @@ import { StyleSheet, Text, View ,Image} from 'react-native';
 import Category from './Screen/category';
 import LoginScreen from './Screen/Login';
 import ProductDetail from './Screen/ProductDetail';
+import ProfileScreen from './Screen/Profile';
 import Start from './Screen/Start';
 
 const stack = createNativeStackNavigator();
@@ -27,6 +28,7 @@ export default function App() {
         <stack.Screen name='Category' component={Category}></stack.Screen>
         <stack.Screen name='ProductDetail' component={ProductDetail}></stack.Screen>
         <stack.Screen name='Login' component={LoginScreen}></stack.Screen>
+        <stack.Screen name='Profile' component={ProfileScreen}></stack.Screen>
       </stack.Navigator>
     </NavigationContainer>
   );
