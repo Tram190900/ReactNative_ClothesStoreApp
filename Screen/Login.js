@@ -28,8 +28,8 @@ export default function LoginScreen({ navigation }) {
   const login = useRef(new Animated.Value(0)).current;
   const sign = useRef(new Animated.Value(0)).current;
   const indexSignUp = useRef(new Animated.Value(-1)).current;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("tram@gmail.com");
+  const [password, setPassword] = useState("123456");
 
   const [emailSignUp, setEmailSignUp] = useState("");
   const [passwordSignUp, setPasswordSignUp] = useState("");

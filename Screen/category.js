@@ -21,14 +21,13 @@ import { ref, onValue } from "firebase/database";
 import { database } from "../firebaseConfig";
 import { auth } from "../firebaseConfig";
 import { useRoute } from "@react-navigation/native";
+import HeaderComponent from "../Components/HeaderComponent";
+import { UserProvider } from "../Context/UserContext";
 
 export default function Category({ navigation }) {
   const route = useRoute();
   const { height, width } = Dimensions.get("window");
-  const [btnColor, setBtnColor] = useState("#E4E2E2");
   const [choise, setChoise] = useState("All");
-  const [userId,setUserId] = useState("");
-  const [userData, setUserData] = useState({});
 
   var listProducts = new Array();
   // const [inforProduct, setInforProduct] = useState({
@@ -51,28 +50,25 @@ export default function Category({ navigation }) {
     });
   };
 
-  const getAllProduct = async()=>{
+  const getAllProduct = async () => {
     const starCountRef = ref(database, "products");
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       setData(data);
     });
-    
-  }
-  const getUserData=async(id)=>{
-    const starCountRef = ref(database, "users/" + id);
-    onValue(starCountRef, (snapshot) => {
-      const data = snapshot.val();
-      setUserData(data);
-      console.log(userData);
-    });
-}
+  };
+  // const getUserData = async (id) => {
+  //   const starCountRef = ref(database, "users/" + id);
+  //   onValue(starCountRef, (snapshot) => {
+  //     const data = snapshot.val();
+  //     setUserData(data);
+  //     console.log(userData);
+  //   });
+  // };
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    setUserId(route.params)
-    getUserData(userId)
-    getAllProduct()
+    getAllProduct();
   }, []);
 
   const FlatListProduct = () => {
@@ -125,22 +121,9 @@ export default function Category({ navigation }) {
 
   return (
     <View style={styles.categoryContainer}>
-        <View style={styles.headercategory}>
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-        <Image source={back}></Image>
-      </TouchableOpacity>
-      <View style={{ alignItems: "center" }}>
-        <Image source={logo} style={{ width: 95, height: 56 }}></Image>
-      </View>
-      <TouchableOpacity>
-        <Image
-          style={styles.imageHeader}
-          source={{
-            uri: userData.uriImage,
-          }}
-        ></Image>
-      </TouchableOpacity>
-    </View>
+      <UserProvider>
+        <HeaderComponent navigation={navigation}></HeaderComponent>
+      </UserProvider>
 
       <View style={styles.searchContainer}>
         <TextInput placeholder="Search" style={styles.searchText}></TextInput>
