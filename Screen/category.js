@@ -71,6 +71,7 @@ export default function Category({ navigation }) {
     getAllProduct();
   }, []);
 
+
   const FlatListProduct = () => {
     if (choise === "All") {
       data.forEach((item) => listProducts.push(item));
@@ -122,16 +123,30 @@ export default function Category({ navigation }) {
   return (
     <View style={styles.categoryContainer}>
       <UserProvider>
-        <HeaderComponent userId={route.params} navigation={navigation}></HeaderComponent>
+        <HeaderComponent
+          userId={route.params}
+          navigation={navigation}
+        ></HeaderComponent>
       </UserProvider>
 
-      <View style={styles.searchContainer}>
-        <TextInput placeholder="Search" style={styles.searchText}></TextInput>
-        <IconComponentProvider IconComponent={MaterialCommunityIcons}>
-          <TouchableOpacity>
-            <Icon name="shopping-search" size={25} color={"gray"}></Icon>
-          </TouchableOpacity>
-        </IconComponentProvider>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <View style={styles.searchContainer}>
+          <TextInput placeholder="Search" style={styles.searchText}></TextInput>
+          <IconComponentProvider IconComponent={MaterialCommunityIcons}>
+            <TouchableOpacity>
+              <Icon name="shopping-search" size={25} color={"gray"}></Icon>
+            </TouchableOpacity>
+          </IconComponentProvider>
+        </View>
+        <TouchableOpacity style={{ marginLeft: 5, marginTop: 12 }} onPress={()=>navigation.navigate("Cart",route.params)}>
+          <AntDesign name="shoppingcart" size={28} color="black" />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.bannerContainer}>

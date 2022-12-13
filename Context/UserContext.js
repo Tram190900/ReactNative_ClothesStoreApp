@@ -9,7 +9,6 @@ export const UserProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
 
  const getUserData=(userId) => {
-    console.log("Context "+userId);
     const dbRef = ref(database);
     get(child(dbRef, `users/`+userId)).then((snapshot) => {
       if (snapshot.exists()) {

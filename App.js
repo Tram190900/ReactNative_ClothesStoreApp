@@ -2,6 +2,7 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View ,Image} from 'react-native';
+import CartScreen from './Screen/Cart';
 import Category from './Screen/category';
 import LoginScreen from './Screen/Login';
 import ProductDetail from './Screen/ProductDetail';
@@ -29,6 +30,7 @@ export default function App() {
         <stack.Screen name='ProductDetail' component={ProductDetail}></stack.Screen>
         <stack.Screen name='Login' component={LoginScreen}></stack.Screen>
         <stack.Screen name='Profile' component={ProfileScreen}></stack.Screen>
+        <stack.Screen name='Cart' component={CartScreen}></stack.Screen>
       </stack.Navigator>
     </NavigationContainer>
   );

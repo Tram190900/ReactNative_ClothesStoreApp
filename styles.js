@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
         borderWidth:1,
         borderColor:'gray',
         borderRadius:22,
-        height:'6.4%'
+        height:50,
+        width:'93%'
     },
     searchText:{
         width:'90%',
