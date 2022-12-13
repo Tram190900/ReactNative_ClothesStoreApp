@@ -6,12 +6,10 @@ import { ref, onValue, get, child } from "firebase/database";
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  const route = useRoute();
   const [userData, setUserData] = useState({});
-  const [userId, setUserId] = useState("");
 
-  useEffect(() => {
-    console.log(userId);
+ const getUserData=(userId) => {
+    console.log("Context "+userId);
     const dbRef = ref(database);
     get(child(dbRef, `users/`+userId)).then((snapshot) => {
       if (snapshot.exists()) {
@@ -23,9 +21,14 @@ export const UserProvider = ({ children }) => {
     }).catch((error) => {
       console.error(error);
     });
-  },[]);
+  };
+
+  const value ={
+    userData,
+    getUserData
+  }
 
   return (
-    <UserContext.Provider value={{ userData,setUserId }}>{children}</UserContext.Provider>
+    <UserContext.Provider value= {value}>{children}</UserContext.Provider>
   );
 };

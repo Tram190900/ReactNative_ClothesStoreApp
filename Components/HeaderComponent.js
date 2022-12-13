@@ -7,16 +7,15 @@ import logo from "../assets/img/logo.png";
 import { UserContext } from '../Context/UserContext';
 import { useRoute } from '@react-navigation/native';
 
-export default function HeaderComponent({navigation}){
-    const route = useRoute();
-    const {userData ,setUserId} = useContext(UserContext);
+export default function HeaderComponent(props){
+    const usercontext = useContext(UserContext);
     useEffect(()=>{
-        setUserId(route.params)
+        usercontext.getUserData(props.userId)
     },[])
 
     return(
         <View style={styles.headercategory}>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Login")}>
           <Image source={back}></Image>
         </TouchableOpacity>
         <View style={{ alignItems: "center" }}>
@@ -26,7 +25,7 @@ export default function HeaderComponent({navigation}){
           <Image
             style={styles.imageHeader}
             source={{
-              uri: userData.uriImage,
+              uri: usercontext.userData.uriImage,
             }}
           ></Image>
         </TouchableOpacity>

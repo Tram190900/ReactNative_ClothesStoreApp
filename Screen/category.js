@@ -122,7 +122,7 @@ export default function Category({ navigation }) {
   return (
     <View style={styles.categoryContainer}>
       <UserProvider>
-        <HeaderComponent navigation={navigation}></HeaderComponent>
+        <HeaderComponent userId={route.params} navigation={navigation}></HeaderComponent>
       </UserProvider>
 
       <View style={styles.searchContainer}>
