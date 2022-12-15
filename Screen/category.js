@@ -28,6 +28,7 @@ export default function Category({ navigation }) {
   const route = useRoute();
   const { height, width } = Dimensions.get("window");
   const [choise, setChoise] = useState("All");
+  const [userId, setUserID] = useState("");
 
   var listProducts = new Array();
   // const [inforProduct, setInforProduct] = useState({
@@ -69,6 +70,7 @@ export default function Category({ navigation }) {
   const [data, setData] = useState([]);
   useEffect(() => {
     getAllProduct();
+    setUserID(route.params)
   }, []);
 
 
@@ -144,7 +146,7 @@ export default function Category({ navigation }) {
             </TouchableOpacity>
           </IconComponentProvider>
         </View>
-        <TouchableOpacity style={{ marginLeft: 5, marginTop: 12 }} onPress={()=>navigation.navigate("Cart",route.params)}>
+        <TouchableOpacity style={{ marginLeft: 5, marginTop: 12 }} onPress={()=>navigation.navigate("Cart",userId)}>
           <AntDesign name="shoppingcart" size={28} color="black" />
         </TouchableOpacity>
       </View>

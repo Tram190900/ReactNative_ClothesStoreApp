@@ -96,7 +96,17 @@ export default function LoginScreen({ navigation }) {
         const errorMessage = error.message;
         console.log(errorCode);
         console.log(errorMessage);
-        Alert.alert("Email hoặc Password sai hoặc không tồn tại");
+        Alert.alert(
+          "Thông báo",
+          "Email hoặc mật khấu sai. Yêu cầu nhập lại",
+          [
+            {
+              text: "Ok",
+              style: "Ok"
+            },
+            { text: "cancel"}
+          ]
+        );
       });
   };
 

@@ -15,13 +15,13 @@ export default function HeaderComponent(props){
 
     return(
         <View style={styles.headercategory}>
-        <TouchableOpacity onPress={() => props.navigation.navigate("Login")}>
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Image source={back}></Image>
         </TouchableOpacity>
         <View style={{ alignItems: "center" }}>
           <Image source={logo} style={{ width: 95, height: 56 }}></Image>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>props.navigation.navigate("Profile", usercontext.userData)}>
           <Image
             style={styles.imageHeader}
             source={{
